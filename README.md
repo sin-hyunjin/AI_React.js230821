@@ -3,13 +3,23 @@
 - [React란?](#react-란)
 - [jsx문법이란?](#jsx-문법이란)
 
+<br>
+
 # 환경 구축
+
+<br>
 
 > ## 폴더에 바로 파일설치하기
 
     npx create-react-app [파일이름] ex)01.basic
 
 - **npx** : npx는 npm 패키지를 실행하고 사용할 수 있도록 도와주는 도구이다. 이를 사용하면 npm 패키지를 로컬로 설치하지 않고도 실행할 수 있다.
+
+### 만약 실행이 안된다면
+
+    npm install create-react
+
+를 설치하고 다시 실행시켜보자.
 
 <br>
 
@@ -166,13 +176,21 @@ React 애플리케이션을 설치하면 다음과 같은 폴더 및 파일 구�
 
 - **재사용 가능한 UI 구성:** 컴포넌트를 활용하여 UI 요소를 재사용하고 유지보수가 쉽습니다.
 
-(SPA) Single Page Application : --> 새로고침이 필요없다.
+(SPA) Single Page Application : --> 새로고침이 되지 않아 사용자의 피로도를 줄여준다.
+
+<br>
+
+# React 기본구조
+
+![스크린샷 2023-08-22 오후 2 11 50](https://github.com/sin-hyunjin/React.js230821/assets/116487398/f0c1042b-2da0-4dfa-be2d-b59df1e6308e)
 
 <br>
 
 ## 라이브러리(Library) vs 프레임워크(Framework)
 
 ![스크린샷 2023-08-21 오후 2 11 46](https://github.com/sin-hyunjin/AI_Machine_Learning/assets/116487398/d729475c-708c-452d-b70d-31ab406a1886)
+
+<br>
 
 # JSX 문법이란 ?
 
