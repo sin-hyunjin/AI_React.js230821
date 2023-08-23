@@ -2,6 +2,17 @@
 - [애플리케이션\_폴더및파일구조\_설명](#react-애플리케이션-폴더-및-파일-구조)
 - [React란?](#react-란)
 - [jsx문법이란?](#jsx-문법이란)
+- [Component란?](#component-란)
+
+# React 개발시 편리한 도구들
+
+- Prettier : Prettier 는 자동으로 코드의 스타일을 관리해주는 도구입니다
+
+        $ npx create-react-app useful-tools
+
+- ES7+ React/Redux/React-Native snip
+
+- ESLint : ESLint 는 자바스크립트의 문법을 확인해주는 도구입니다
 
 <br>
 
@@ -180,7 +191,7 @@ React 애플리케이션을 설치하면 다음과 같은 폴더 및 파일 구�
 
 <br>
 
-# React 기본구조
+## React 기본구조
 
 ![스크린샷 2023-08-22 오후 2 11 50](https://github.com/sin-hyunjin/React.js230821/assets/116487398/f0c1042b-2da0-4dfa-be2d-b59df1e6308e)
 
@@ -232,3 +243,13 @@ JSX문법의 특징
    4-1. css파일 내 스타일 정의 - import로 css파일 경로 설정
 
    4-2. 객체형태로 정의 - HTML문법 내 style 속성 정의 - style속성 내 객체형태의 스타일 정의 ( {key:value} )
+
+<br>
+
+# Component 란?
+
+![스크린샷 2023-08-22 오후 2 18 53](https://github.com/sin-hyunjin/React.js230821/assets/116487398/c774e080-d5e3-4bc2-b278-a05f6f312a2e)
+
+- 블록이라 생각하고 페이지를 한개씩 생각하고 쪼개는 작업
+
+- 코드의 재사용성과 유지 보수성을 향상시킨다.
