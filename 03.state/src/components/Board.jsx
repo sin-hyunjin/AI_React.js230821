@@ -44,6 +44,10 @@ const Board = () => {
     }
 
     //  숫자가 3이 되었을때 승
+    console.log('위', myscore)
+  }
+
+  const Draw = () => {
     if (myscore === 5) {
       alert('내가 이겼다!')
       handleResetClick()
@@ -57,6 +61,7 @@ const Board = () => {
   const handleResetClick = () => {
     setMyScore(0)
     setScore(0)
+    setIsDraw('none')
   }
   return (
     <div>
