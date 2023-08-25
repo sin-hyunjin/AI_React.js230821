@@ -1,0 +1,8 @@
+[
+  { "id": 1, "name": "정은우", "task": "Front-end" },
+  { "id": 2, "name": "김도형", "task": "Database" },
+  { "id": 3, "name": "김형균", "task": "Back-end" },
+  { "id": 4, "name": "나범수", "task": "Front-end" },
+  { "id": 5, "name": "신현진", "task": "Front-end" },
+  { "id": 6, "name": "장유빈", "task": "Chat-bot" }
+]

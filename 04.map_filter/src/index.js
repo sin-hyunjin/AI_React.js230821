@@ -2,14 +2,16 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
 // import App from './App'
-import { Ex01 } from './Ex01'
+// import { Ex01 } from './Ex01'
+import Ex02 from './Ex02'
 import reportWebVitals from './reportWebVitals'
 
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   // <React.StrictMode>
   // <App />
-  <Ex01 />
+  // <Ex01 />
+  <Ex02 />
   // </React.StrictMode>
 )
 
