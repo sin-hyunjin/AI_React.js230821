@@ -1,4 +1,5 @@
 import React, { useRef } from 'react'
+import { v4 as uuidv4 } from 'uuid'
 
 const TodoInput = ({ todos, setTodos }) => {
   let todoinput = useRef(null)
@@ -6,7 +7,7 @@ const TodoInput = ({ todos, setTodos }) => {
   const handleclickbtn = () => {
     let todo = todoinput.current.value // Input요소.value
 
-    setTodos([...todos, { id: todos.length, text: todo, complete: false }])
+    setTodos([...todos, { id: uuidv4(), text: todo, complete: false }])
     // console.log(todos)
 
     // 입력된 내용을 비우고 커서 생성하기

@@ -8,7 +8,7 @@ const TodoItem = ({ todo, todos, setTodos, checked }) => {
   const [edited, setEdited] = useState(false)
 
   // 사용자가 입력한 텍스트를 저장하는 상태를 저장
-  const [newText, setNewText] = useState()
+  const [newText, setNewText] = useState(todo.text)
 
   const handleCheckChange = () => {
     // 'todos' 배열을 복사하고, 'complete' 속성을 토글(Toggle).
@@ -25,9 +25,32 @@ const TodoItem = ({ todo, todos, setTodos, checked }) => {
   const handleCheckClick = () => {
     setEdited(true)
   }
+  // 사용자가 입력한 값을 newText에 저장
+  // const handleEditText = (e) => {
+  //   setNewText(e.target.value)
+  //   console.log(newText)
+  // }
 
   // 수정완료 기능 구현
-  const handleSubmitClick = () => {}
+  const handleSubmitClick = () => {
+    let updateList = todos.map((item) => ({
+      ...item,
+      text: item.id === todo.id ? newText : item.text,
+    }))
+    // 변경된 목록을 'setTodos'를 통해 업데이트
+    setTodos(updateList)
+
+    setEdited(false)
+  }
+
+  const handleDelete = (id) => {
+    if (window.confirm('정말 삭제하시겠습니까?')) {
+      console.log(`삭제할 todo의 id :`, id)
+      let updateList = todos.filter((item) => item.id !== id)
+      setTodos(updateList)
+    }
+  }
+
   return (
     <li className="todo-item">
       {todo.complete ? (
@@ -50,8 +73,8 @@ const TodoItem = ({ todo, todos, setTodos, checked }) => {
         <input
           type="text"
           className="todo-item-edit-input"
-          value={todo.text}
-          onChange={handleEditText}
+          value={newText}
+          onChange={(e) => setNewText(e.target.value)}
         />
       ) : (
         // 수정 모드가 아닐 때 할 일 내용을 표시
@@ -76,7 +99,13 @@ const TodoItem = ({ todo, todos, setTodos, checked }) => {
       )}
 
       {/* 할 일 삭제 버튼 표시 */}
-      <button className="todo-item-delete-btn">🗑️</button>
+
+      <button
+        className="todo-item-delete-btn"
+        onClick={() => handleDelete(todo.id)}
+      >
+        🗑️
+      </button>
     </li>
   )
 }
