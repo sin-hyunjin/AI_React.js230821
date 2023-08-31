@@ -13,10 +13,20 @@ const TodoHome = () => {
       <TodoInput todos={todos} setTodos={setTodos}></TodoInput>
 
       {/* 해야할 일 출력  */}
-      <TodoList title="해야할 일" todos={todos} setTodos={setTodos}></TodoList>
+      <TodoList
+        title="해야할 일"
+        todos={todos}
+        setTodos={setTodos}
+        checked={false}
+      ></TodoList>
 
       {/* 완료된 일 출력 */}
-      <TodoList title="완료된 일"></TodoList>
+      <TodoList
+        title="완료된 일"
+        todos={todos}
+        setTodos={setTodos}
+        checked={true}
+      ></TodoList>
     </div>
   )
 }
