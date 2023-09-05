@@ -1,8 +1,18 @@
 # axios 설치 방법
 
-    npm install axios
+    $ npm install axios
+
+<br>
 
 ![스크린샷 2023-09-05 오후 4 15 54](https://github.com/sin-hyunjin/React.js230821/assets/116487398/e39b941d-4b52-4c31-8ac4-f5ea9c77dd53)
+
+<br>
+
+## 로딩창 구현하기
+
+    $ npm install --save react-spinners
+
+<br>
 
 # Getting Started with Create React App
 
