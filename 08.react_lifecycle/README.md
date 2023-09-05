@@ -1,3 +1,9 @@
+# axios 설치 방법
+
+    npm install axios
+
+![스크린샷 2023-09-05 오후 4 15 54](https://github.com/sin-hyunjin/React.js230821/assets/116487398/e39b941d-4b52-4c31-8ac4-f5ea9c77dd53)
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
