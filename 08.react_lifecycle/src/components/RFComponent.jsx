@@ -51,7 +51,7 @@ const RFComponent = () => {
     console.log('num 또는 num2 state 변화감지 ')
   }, [num, num2])
 
-  /*https://api.openweathermap.org/data/2.5/weather?lat=35.145856&lon=126.921419&appid=24b4ce5b8d79f2e2185ae5dd6e5a683f*/
+  /* https://api.openweathermap.org/data/2.5/weather?lat={}&lon={}&appid={}*/
   return (
     <div>
       {console.log('2.render 대체 => return문 안에 ')}
