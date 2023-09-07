@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import axios from "axios";
-import { useState } from "react";
+import React, { useEffect } from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
+import { useState } from 'react'
 
 const GoodsDetail = () => {
   //상품정보를 저장하는 state를 정의하시오.
@@ -19,7 +19,7 @@ const GoodsDetail = () => {
   return (
     <div className="goods-detail-box">
       <div className="goods-detail-box-thumb">
-        <img src={"상품sub이미지"} alt="이미지" />
+        <img src={'상품sub이미지'} alt="이미지" />
       </div>
       <div className="goods-detail-box-info">
         <div className="goods-detail-title">
@@ -28,17 +28,17 @@ const GoodsDetail = () => {
             <em className="goods-new">new</em>
             <em className="goods-best">best</em>
           </div>
-          <p className="goods-detail-name">{"상품이름"}</p>
-          <p className="goods-detail-txt">{"상품간단한설명"}</p>
+          <p className="goods-detail-name">{'상품이름'}</p>
+          <p className="goods-detail-txt">{'상품간단한설명'}</p>
           <div className="goods-detail-price-box">
-            <strong>{"상품가격"}</strong>
+            <strong>{'상품가격'}</strong>
             <span>원</span>
           </div>
         </div>
-        <div className="goods-detail-summary">{"상품상세설명"}</div>
+        <div className="goods-detail-summary">{'상품상세설명'}</div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GoodsDetail;
+export default GoodsDetail

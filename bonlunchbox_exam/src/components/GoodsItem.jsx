@@ -1,9 +1,8 @@
-import React from "react";
+import React from 'react'
 
 const GoodsItem = () => {
-
   return (
-    <div className="goods-item" style={{ position: "relative" }}>
+    <div className="goods-item" style={{ position: 'relative' }}>
       <div className="goods-item-icon">
         {/* 해당 상품이 new인지 best인지 조건부 렌더링을 통해 출력하시오. */}
 
@@ -17,16 +16,16 @@ const GoodsItem = () => {
           상세페이지 URL : /menu/상품의 id
         */}
 
-        <img src={"상품이미지경로"} alt="이미지" />
+        <img src={'상품이미지경로'} alt="이미지" />
       </div>
       <div className="goods-name">
-        <h4>{"상품이름"}</h4>
+        <h4>{'상품이름'}</h4>
         <p>
-          <span>{"상품가격"}</span>원
+          <span>{'상품가격'}</span>원
         </p>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default GoodsItem;
+export default GoodsItem

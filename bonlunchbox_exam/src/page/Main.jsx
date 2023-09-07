@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react'
 
 const Main = () => {
   return (
@@ -25,7 +25,7 @@ const Main = () => {
         본죽&비빔밥에서 만나보세요.
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Main;
+export default Main
