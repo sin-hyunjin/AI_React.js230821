@@ -1,5 +1,7 @@
 import React from 'react'
 
+// 본죽 페이지 clone 따보기
+
 const GoodsItem = () => {
   return (
     <div className="goods-item" style={{ position: 'relative' }}>
