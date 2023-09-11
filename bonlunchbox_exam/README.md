@@ -1,5 +1,7 @@
 # 본죽페이지 clone
 
+![스크린샷 2023-09-11 오전 10 13 02](https://github.com/sin-hyunjin/React.js230821/assets/116487398/1570d10c-7d2c-4533-b6e2-51e89c9db26c)
+
 > ===========================
 
     ==== ==  head    =========
@@ -11,6 +13,16 @@
 > ==========================
 
     ======   footer  ==========
+
+## json 서버 설치
+
+    npm install -g json-server
+
+## json 서버 동작 명령어
+
+    json-server --watch goods.json --port 3004
+
+json-server --watch 실행할 JSON 파일 --port 포트번호설정
 
 <br>
 
