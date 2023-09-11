@@ -30,12 +30,18 @@ function App() {
         {/* 메인페이지  */}
         <Route path="/" element={<Main></Main>}></Route>
         {/* 로그인페이지  */}
-        <Route path="/login" element={<Login />}></Route>
+        <Route
+          path="/login"
+          element={<Login setAuthenticate={setAuthenticate} />}
+        ></Route>
         {/* 메뉴리스트  */}
-        <Route path="/menu/list" element={<GoodsList />}></Route>
+        <Route
+          path="/menu/list"
+          element={<GoodsList goods={goods} setGoods={setGoods} />}
+        ></Route>
         {/* 메뉴아이디  */}
 
-        {/* :id는 동적 매개변수로, 실제로는 어떤 값을 가질 수 있는 와일드카드입니다. 예를 들어, /menu/1, /menu/2, /menu/abc 등 다양한 값을 가질 수 있습니다. 이 경로는 /menu/ 다음에 오는 어떤 값에도 일치 */}
+        {/* :id는 동적 매개변수로, 실제로는 어떤 값을 가질 수 있는 와일드카드입니다. 예를 들어, /menu/1, /menu/2, /menu/abc 등 다양한 값을 가질 수 있다 이 경로는 /menu/ 다음에 오는 어떤 값에도 일치 */}
         <Route
           path="/menu/:id"
           element={<PrivateRoute authenticate={authenticate} />}
