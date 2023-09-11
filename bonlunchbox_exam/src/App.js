@@ -21,7 +21,7 @@ function App() {
   return (
     <div className="container">
       {/* Header컴포넌트가 출력되도록 구현하시오. */}
-      <Header />
+      <Header authenticate={authenticate} setAuthenticate={setAuthenticate} />
 
       {/* 
           메인페이지, 로그인페이지, 메뉴리스트, 메뉴상세페이지로 이동되도록
