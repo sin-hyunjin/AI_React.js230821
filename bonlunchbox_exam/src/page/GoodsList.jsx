@@ -19,6 +19,9 @@ const GoodsList = ({ goods, setGoods }) => {
   return (
     <div className="goods-list">
       {/* 3.상품리스트 안에 있는 정보를 GoodsItem 컴포넌트를 활용해 출력하시오. */}
+      {goods.map((item) => (
+        <GoodsItem key={item.id} item={item} />
+      ))}
     </div>
   )
 }

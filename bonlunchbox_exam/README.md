@@ -1,6 +1,6 @@
 # 본죽페이지 clone
 
-![스크린샷 2023-09-11 오전 10 13 02](https://github.com/sin-hyunjin/React.js230821/assets/116487398/1570d10c-7d2c-4533-b6e2-51e89c9db26c)
+![스크린샷 2023-09-11 오전 11 06 48](https://github.com/sin-hyunjin/React.js230821/assets/116487398/826349ea-29a7-4c57-9a13-7986d2424fce)
 
 > ======================
 
@@ -25,6 +25,10 @@
 json-server --watch 실행할 JSON 파일 --port 포트번호설정
 
 <br>
+
+## useParmas() 와 useSearchParams()
+
+![스크린샷 2023-09-11 오후 12 10 46](https://github.com/sin-hyunjin/React.js230821/assets/116487398/ec229f65-7bc9-4592-b0f2-b938ed7e054e)
 
 # React-Navigate
 

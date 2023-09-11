@@ -1,7 +1,17 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
-const Login = () => {
+const Login = ({ setAuthenticate }) => {
   //submit 버튼 클릭 시, 로그인 상태값을 전환하고 메인 페이지로 이동되도록 구현하시오.
+  const navigate = useNavigate()
+
+  const handleSubmit = (e) => {
+    // 이벤트 동작을 중지시키는 함수
+    e.preventDefault()
+    setAuthenticate(true)
+    navigate('/')
+    console.log('로그인실행')
+  }
 
   return (
     <div className="login-box">
@@ -17,7 +27,12 @@ const Login = () => {
             <input type="password" placeholder="비밀번호를 입력해주세요." />
           </div>
           <div className="submit">
-            <input type="submit" className="login-btn" value="로그인" />
+            <input
+              type="submit"
+              className="login-btn"
+              value="로그인"
+              onClick={handleSubmit}
+            />
           </div>
         </form>
       </div>

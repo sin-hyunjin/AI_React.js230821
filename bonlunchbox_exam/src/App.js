@@ -15,7 +15,8 @@ function App() {
   // 로그인상태 : authenticate
   // 상품리스트 : goods
   const [authenticate, setAuthenticate] = useState(true) // 로그인상태
-  const [goods, setGoods] = useState() // 상품리스트
+  // map 함수는 초기값을 배열로 줘야 가능하다.
+  const [goods, setGoods] = useState([]) // 상품리스트
 
   return (
     <div className="container">
