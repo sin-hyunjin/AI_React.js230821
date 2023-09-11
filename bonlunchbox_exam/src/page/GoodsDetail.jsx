@@ -31,6 +31,7 @@ const GoodsDetail = () => {
   // 바로 쓸수 없는상태를 대비해서 state가 비어져있는지 조건부렌더링으로 확인한다.
   return (
     <div className="goods-detail-box">
+      {/* good state에 정보가 있을 때 property에 접근하도록 조건부 렌더링 처리 */}
       {good ? (
         // <> 값을 비워두면 렌더링중에 div로 자동인식한다 .
         <>
