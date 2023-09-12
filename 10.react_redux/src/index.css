@@ -1,0 +1,25 @@
+body {
+  margin: 0;
+  padding: 0;
+}
+button {
+  width: auto;
+  height: 1.5rem;
+  margin: 4px;
+  background-color: rgba(207, 207, 230, 0.497);
+  border-radius: 9999px;
+  border: 1px solid rgb(221, 204, 192);
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 높이의 100%만큼의 높이를 가짐 */
+}
+
+.box {
+  text-align: center;
+  padding: 20px;
+  border: 1px solid #ccc;
+  box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.332);
+}
