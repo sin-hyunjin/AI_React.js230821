@@ -7,6 +7,7 @@ import logger from 'redux-logger';
 
     configureStore() : store를 생성하는 함수 
  
+    react middelware : action과 reducer 사이에 특정 함수를 실행하는 중간 처리기 
 */
 export default configureStore({
   reducer: {
