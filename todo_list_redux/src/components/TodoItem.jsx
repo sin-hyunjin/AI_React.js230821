@@ -1,8 +1,9 @@
 import React from 'react'
 import { useState } from 'react'
 import { FaCheckCircle, FaRegCircle } from 'react-icons/fa'
-
-const TodoItem = ({ todo, todos, setTodos, checked }) => {
+import { useDispatch } from 'react-redux'
+import { TodoReducerActions } from '../redux/reducers/todoSlice'
+const TodoItem = ({ todo }) => {
   // edited : 사용자가 수정버튼을 눌렀는지에 대한 상태
   // true: 수정 | false: 수정 X
   const [edited, setEdited] = useState(false)
@@ -10,15 +11,13 @@ const TodoItem = ({ todo, todos, setTodos, checked }) => {
   // 사용자가 입력한 텍스트를 저장하는 상태를 저장
   const [newText, setNewText] = useState(todo.text)
 
+  // const todos = useSelector((state) => state.todo.todos)
+  const dispatch = useDispatch()
+
   const handleCheckChange = () => {
-    // 'todos' 배열을 복사하고, 'complete' 속성을 토글(Toggle).
-    // 'todo.id'와 일치하는 항목의 'complete' 값을 변경하고 나머지 항목은 그대로 유지
-    let updateList = todos.map((item) => ({
-      ...item,
-      complete: item.id === todo.id ? !item.complete : item.complete,
-    }))
     // 변경된 목록을 'setTodos'를 통해 업데이트
-    setTodos(updateList)
+    // setTodos(updateList)
+    dispatch(TodoReducerActions.checkChangeTodo({ id: todo.id }))
   }
 
   // 수정상태를 true로 변경
@@ -33,21 +32,18 @@ const TodoItem = ({ todo, todos, setTodos, checked }) => {
 
   // 수정완료 기능 구현
   const handleSubmitClick = () => {
-    let updateList = todos.map((item) => ({
-      ...item,
-      text: item.id === todo.id ? newText : item.text,
-    }))
     // 변경된 목록을 'setTodos'를 통해 업데이트
-    setTodos(updateList)
-
+    // setTodos(updateList)
+    dispatch(TodoReducerActions.textChangeTodo({ id: todo.id, text: newText }))
     setEdited(false)
   }
 
   const handleDelete = (id) => {
     if (window.confirm('정말 삭제하시겠습니까?')) {
       console.log(`삭제할 todo의 id :`, id)
-      let updateList = todos.filter((item) => item.id !== id)
-      setTodos(updateList)
+      // let updateList = todos.filter((item) => item.id !== id)
+      // setTodos(updateList)
+      dispatch(TodoReducerActions.deleteTodo({ id: todo.id }))
     }
   }
 

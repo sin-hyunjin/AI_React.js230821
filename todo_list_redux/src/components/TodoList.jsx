@@ -1,7 +1,10 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import TodoItem from './TodoItem'
 
-const TodoList = ({ title, todos, setTodos, checked }) => {
+const TodoList = ({ title, checked }) => {
+  const todos = useSelector((state) => state.todo.todos)
+
   return (
     <div className="todo-list">
       <p className="todo-list-tit">[{title} : 0개]</p>
@@ -17,7 +20,6 @@ const TodoList = ({ title, todos, setTodos, checked }) => {
                   key={todo.id}
                   todo={todo}
                   todos={todos}
-                  setTodos={setTodos}
                   checked={checked}
                 ></TodoItem>
               )
