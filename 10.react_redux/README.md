@@ -3,6 +3,8 @@
     npm install @reduxjs/toolkit
     npm install react-redux
 
+- 상태(state) 관리를 위해 사용하는 라이브러리
+
 - 모듈 번들러 또는 노드 애플리케이션과 함께 사용하기 위해 NPM에서 패키지로 ㅈ공
 
 - configureStore(): createStore단순화된 구성 옵션과 적절한 기본값을 제공하기 위해 래핑됩니다. 자동으로 슬라이스 리듀서를 결합하고, 제공하는 Redux 미들웨어를 추가하고, redux-thunk기본적으로 포함하며, Redux DevTools Extension을 사용할 수 있습니다.
@@ -21,6 +23,10 @@
 ## Redux logger
 
     npm install redux-logger
+
+## Readux 상태 관리 흐름
+
+![스크린샷 2023-09-13 오전 9 13 33](https://github.com/doyou1/web-front-clone-sinhj/assets/116487398/fdb8f45f-db00-46ff-8b26-5deec669c37f)
 
 # Getting Started with Create React App
 
