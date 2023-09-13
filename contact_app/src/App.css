@@ -1,0 +1,108 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.contact-container {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+
+  max-width: 600px;
+  height: 500px;
+  margin: 0 auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+  font-size: 24px;
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* 입력 상자 및 버튼 스타일링 */
+input[type='text'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+button {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.contact-registration-leftbox {
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  justify-content: center;
+
+  position: relative;
+  margin-top: 0px;
+  width: 40%;
+  padding-right: 4.4rem;
+  border-right: 2px solid black;
+}
+.contact-registration-rightbox {
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+
+  position: relative;
+
+  margin-top: -140px;
+
+  width: 40%;
+  padding-left: 3rem;
+  border-left: 2px solid black;
+}
+
+.contact-registration-leftbox > input {
+  width: auto;
+}
+.contact-registration-rightbox input {
+  width: auto;
+  height: 20px;
+  margin-left: -15px;
+}
+.contact-registration-rightbox > button {
+  width: auto;
+  height: 40px;
+  margin: 1px 10px 0 10px;
+}
+.contact-count {
+  /* display: flex; */
+  /* position: relative; */
+  display: flex;
+  flex-direction: row;
+  align-self: flex-end;
+
+  color: rgba(51, 51, 51, 0.81);
+  width: 40%;
+  border-radius: 5px;
+  margin-top: 1rem;
+  padding: 0.5rem;
+  box-shadow: 0.2px 2px 3px 0.5px rgba(0, 0, 0, 0.374);
+}
