@@ -10,14 +10,14 @@ import { createContext, useState } from 'react';
 export const NaverData = createContext();
 
 function App() {
-  const [searchData, setSearchDate] = useState([]);
+  const [searchData, setSearchData] = useState([]);
 
   return (
     <div className="App">
       <img className="logo" src={logo} alt="NAVER SEARCH API" />
       <div className="App-contents">
         <NaverData.Provider
-          value={{ searchData: searchData, setSearchDate: setSearchDate }}
+          value={{ searchData: searchData, setSearchData: setSearchData }}
         >
           <Routes>
             <Route path="/" element={<Search />}></Route>
