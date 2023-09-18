@@ -18,13 +18,13 @@ const Join = () => {
         {/* password */}
         <Form.Group className="mb-3" controlId="formBasicPassWord">
           <Form.Label>비밀번호</Form.Label>
-          <Form.Control type="password" placeholder="Enter Password" />
+          <Form.Control type="password" placeholder="Password" />
         </Form.Group>
 
         {/* password check */}
         <Form.Group className="mb-3" controlId="formBasicPassWordCheck">
           <Form.Label>비밀번호 확인</Form.Label>
-          <Form.Control type="password" placeholder="Enter Password" />
+          <Form.Control type="password" placeholder="Password" />
         </Form.Group>
 
         {/* name */}
