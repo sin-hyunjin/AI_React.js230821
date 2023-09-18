@@ -2,6 +2,11 @@
 const express = require("express");
 const app = express();
 const indexRouter = require("./routes");
+const path = require("path");
+
+// 정적인 파일을 가져오기 위한 미들웨어
+app.use(express.static(path.join(__dirname, "react-project", "build")));
+
 // router
 app.use("/", indexRouter);
 

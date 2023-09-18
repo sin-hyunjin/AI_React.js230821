@@ -3,10 +3,10 @@
     npm init -y
     npm i express
 
-> - 생겨난 결과물
->   > - package-json
->   > - package-lock.json
->   > - node_modules
+- 생겨난 결과물
+  - package-json
+  - package-lock.json
+  - node_modules
 
 ### 1) 폴더구성
 
@@ -22,3 +22,7 @@
 ### 2) sercer.js 구성
 
     npx create-react-app 폴더이름
+
+현재 상태를 정적인 페이지로 만들어주는 일
+
+    npm run build
