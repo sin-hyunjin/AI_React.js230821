@@ -1,6 +1,6 @@
-- [React](./02.React.js/)
+- [02.React](./02.React.js/)
 
-- [ReactNodeLink](./03.ReactNodeLink/)
+- [03.ReactNodeLink](./03.ReactNodeLink/)
 
 - [개발환경구축](#환경-구축)
 - [애플리케이션\_폴더및파일구조\_설명](#react-애플리케이션-폴더-및-파일-구조)
