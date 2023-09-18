@@ -1,7 +1,13 @@
 import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Body from "./components/Body";
 
 function App() {
-  return <div>즐거운 연동시간!!!</div>;
+  return (
+    <div>
+      <Body />
+    </div>
+  );
 }
 
 export default App;
