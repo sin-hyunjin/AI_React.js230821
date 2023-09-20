@@ -32,7 +32,36 @@ router.post("/checkId", (req, res) => {
 
 // 회원가입 라우터
 router.post("/join", (req, res) => {
-  console.log("join Router");
-});
+  console.log("join Router", req.body);
+  const { id, pw, name, email } = req.body.userInfo;
 
+  let sql = "insert into porject_member values (?, ?, ?, ?)";
+  conn.query(sql, [id, pw, name, email], (err, rows) => {
+    if (rows) {
+      res.json({ msg: "success" });
+    } else {
+      res.json({ msg: "failed" });
+    }
+  });
+});
+// 로그인 라우터
+router.post("/login", (req, res) => {
+  // console.log("login Router", req.body);
+  const { id, pw } = req.body.login;
+  console.log(id);
+  let sql =
+    "select id,user_name,email from porject_member where id = ? and pw = ?";
+
+  conn.query(sql, [id, pw], (err, rows) => {
+    console.log(rows);
+    if (rows.length > 0) {
+      res.json({
+        msg: "seccess",
+        user: { id: rows },
+      });
+    } else {
+      res.json({ msg: "failed" });
+    }
+  });
+});
 module.exports = router;

@@ -74,10 +74,10 @@ ctrl + enter 실행
 
 #### axios 기능 - baseURL : 기본 URL을 설정해서 유지보수에 용이
 
-설치
+##### 설치
 
     npm i axios
 
-사용법
+##### 사용법
 
     axios(url, {})
