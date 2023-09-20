@@ -41,3 +41,43 @@
     npm start
 
 - 세팅 <BrowserRouter>
+
+### MY SQL
+
+- ID , PW, NAME, EMAIL
+
+workbaench -> localhost 서버
+
+#### 해당 DB를 사용하겠다 라는 명령을 맨처음 실행 시켜줘야한다 .
+
+    use nodejs_DB;
+
+    create table porject_member(
+        id varchar(50),
+        pw varchar(100),
+        user_name varchar(50),
+        email varchar(100)
+    );
+
+ctrl + enter 실행
+
+    host : 'localhost',
+    user : 'root',
+    password : ''
+    port : 3306,
+    database : 'nodejs_DB'
+    tableName :"porject_member"
+
+#### mysql2 설치
+
+    npm install mysql2
+
+#### axios 기능 - baseURL : 기본 URL을 설정해서 유지보수에 용이
+
+설치
+
+    npm i axios
+
+사용법
+
+    axios(url, {})
