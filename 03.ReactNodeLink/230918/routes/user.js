@@ -44,6 +44,7 @@ router.post("/join", (req, res) => {
     }
   });
 });
+
 // 로그인 라우터
 router.post("/login", (req, res) => {
   // console.log("login Router", req.body);
@@ -57,10 +58,45 @@ router.post("/login", (req, res) => {
     if (rows.length > 0) {
       res.json({
         msg: "seccess",
-        user: { id: rows },
+        user: rows[0],
       });
     } else {
       res.json({ msg: "failed" });
+    }
+  });
+});
+
+//로그아웃 라우터
+// session을 server에 저장한 경우에는 해당 라우터로 와야함(기존)
+// session을 front에 저장한 경우에는 로그아웃을 react에서 설정 가능
+router.get("/logout");
+
+router.post("/checkPw", (req, res) => {
+  const { id, currentPw, changePw } = req.body;
+  console.log("바꿀 비밀번호", id, currentPw, changePw);
+  let sql =
+    "select id,pw,user_name,email from porject_member where id = ? and pw = ?";
+  conn.query(sql, [id, currentPw], (err, rows) => {
+    console.log(rows.length);
+    // 동일한 데이터가 없다면
+    if (!rows.length > 0) {
+      res.json({
+        msg: "failed",
+      });
+      // 동일한 데이터가 있다면 updata 쿼리문 실행
+    } else {
+      let updataSql = "UPDATE porject_member SET pw = ? where id = ? ";
+      conn.query(updataSql, [changePw, id], (err, rows) => {
+        if (rows.changedRows) {
+          res.json({
+            msg: "success",
+          });
+        } else {
+          res.json({
+            msg: "failed",
+          });
+        }
+      });
     }
   });
 });

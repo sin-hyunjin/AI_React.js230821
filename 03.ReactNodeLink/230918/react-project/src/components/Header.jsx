@@ -2,6 +2,13 @@ import React from "react";
 import { Card, Nav, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 const Header = () => {
+  // 로그아웃 하는 함수
+  const handleLogout = () => {
+    console.log("logout function");
+
+    sessionStorage.setItem("user", null);
+    window.location.href = "/link";
+  };
   return (
     <Card.Body>
       <Nav variant="tabs">
@@ -26,9 +33,13 @@ const Header = () => {
         <Link to={"/delete"}>
           <Button variant="light">회원탈퇴</Button>
         </Link>
-        <Link to={"#"}>
-          <Button variant="light">로그아웃</Button>
-        </Link>
+        {/* Case 1) 서버에 세선 저장한 경우 = Link */}
+        {/* <Link to={"/user/out"}> */}
+        {/* Case 2) 브라우저에 세션 저장한 경우  */}
+        <Button variant="light" onClick={handleLogout}>
+          로그아웃
+        </Button>
+        {/* </Link> */}
       </Nav>
     </Card.Body>
   );
