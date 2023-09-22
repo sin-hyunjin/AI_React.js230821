@@ -6,13 +6,18 @@ import { Table, Button, Form, Modal, Row, Col } from "react-bootstrap";
 const MyPage = () => {
   const [show, setShow] = useState(false);
   const [btnText, setBtnText] = useState("비밀번호 변경");
+
+  // 세션아이디가 필요
   const userObj = JSON.parse(sessionStorage.getItem("user"));
-  const currentPw = useRef();
-  const changePw = useRef();
+
+  const currentPw = useRef(); // 현재 비번
+  const changePw = useRef(); // 바꿀 비번
   const pwRef = useRef();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
+
+  /** 비밀번호를 수정하는 함수 */
   const handlePW = (e) => {
     e.preventDefault();
     console.log(
@@ -29,15 +34,23 @@ const MyPage = () => {
         console.log(res.data);
         if (res.data.msg == "success") {
           setShow(false);
-          setBtnText("비밀번호 변경 완료");
+          setBtnText("비밀번호 변경이 되었어용 축하드립니다~~~🎉");
           // 버튼 사용못하게 막음
           pwRef.current.disabled = "ture";
+        } else if (res.data.msg == "failed") {
+          // 사용자 잘못 입력
+          alert("아이쿠! 비밀번호를 다시 확인해주세요.");
+          handleClose();
+        } else {
+          // 서버문제
+          alert("sorry🥹 죄송합니다. 다시 시도해주세요!");
+          handleClose();
         }
       });
   };
   return (
     <div className="main-body">
-      s<h1>마이페이지</h1>
+      <h1>마이페이지</h1>
       <div align="center">
         <Table striped="columns">
           <tbody align="center">
@@ -55,6 +68,7 @@ const MyPage = () => {
                     onClick={handleShow}
                     ref={pwRef}
                   >
+                    {/* 비밀번호 변경 텍스트 */}
                     {btnText}
                   </Button>
                 </div>

@@ -71,9 +71,11 @@ router.post("/login", (req, res) => {
 // session을 front에 저장한 경우에는 로그아웃을 react에서 설정 가능
 router.get("/logout");
 
+// 비밀번호 수정 라우터
 router.post("/checkPw", (req, res) => {
-  const { id, currentPw, changePw } = req.body;
-  console.log("바꿀 비밀번호", id, currentPw, changePw);
+  let { id, currentPw, changePw } = req.body;
+  console.log("받아온데이터 : ", id, currentPw, changePw);
+
   let sql =
     "select id,pw,user_name,email from porject_member where id = ? and pw = ?";
   conn.query(sql, [id, currentPw], (err, rows) => {
@@ -93,7 +95,7 @@ router.post("/checkPw", (req, res) => {
           });
         } else {
           res.json({
-            msg: "failed",
+            msg: "error",
           });
         }
       });
