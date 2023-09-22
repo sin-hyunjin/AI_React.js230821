@@ -7,6 +7,7 @@
 const express = require("express");
 const router = express.Router();
 const conn = require("../config/database");
+const path = require("path");
 
 // 회원가입 시, ID중복체크
 router.post("/checkId", (req, res) => {
@@ -102,4 +103,63 @@ router.post("/checkPw", (req, res) => {
     }
   });
 });
+
+// 이름, 이메일 수정 라우터
+router.post("/modify", (req, res) => {
+  console.log("modify router");
+  let { id, new_name, new_email } = req.body;
+  console.log(id, new_name, new_email);
+  const sql = "UPDATE porject_member SET user_name = ?, email = ? WHERE id = ?";
+
+  conn.query(sql, [new_name, new_email, id], (err, rows) => {
+    console.log("정보수정 쿼리문 결과 : ", rows);
+
+    if (rows) {
+      res.json({
+        msg: "seccess",
+      });
+    } else {
+      res.json({
+        msg: "failed",
+      });
+    }
+  });
+});
+
+// 회원 탈퇴 라우터
+router.post("/delete", (req, res) => {
+  console.log("delete router", req.body.delInfo);
+  let { id, pw } = req.body.delInfo;
+  let sql = "DELETE FROM porject_member WHERE id = ? and pw = ? ";
+
+  conn.query(sql, [id, pw], (err, rows) => {
+    console.log(rows.length);
+    if (rows) {
+      res.json({ msg: "seccess" });
+    } else {
+      res.json({ msg: "failed" });
+    }
+  });
+});
+
+// 회원 정보 검색라우터
+router.post("/select", (req, res) => {
+  console.log("select router");
+  let sql = "select id,user_name,email from porject_member";
+
+  conn.query(sql, (err, rows) => {
+    console.log(rows);
+    res.json({ list: rows });
+  });
+});
+
+// 라우터의 와일드카드
+// 위에 훍고 왔던 router에 전부 해당하지 않으면, 이 라우터에 들어오겠다.
+// router.get("*", (req, res) => {
+//   console.log("main router");
+//   res.sendFile(
+//     path.join(__dirname, "..", "react-project", "build", "index.html")
+//   );
+// });
+
 module.exports = router;

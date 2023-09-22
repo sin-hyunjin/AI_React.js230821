@@ -13,6 +13,8 @@ const MyPage = () => {
   const currentPw = useRef(); // 현재 비번
   const changePw = useRef(); // 바꿀 비번
   const pwRef = useRef();
+  const nameRef = useRef();
+  const emailRef = useRef();
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
@@ -48,6 +50,38 @@ const MyPage = () => {
         }
       });
   };
+
+  /** 개인정보 수정하는 함수 (이름, 이메일) */
+  const handleModify = (e) => {
+    e.preventDefault();
+    console.log("handleModyfi function : ");
+    axios
+      .post("/user/modify", {
+        id: userObj.id,
+        new_name: nameRef.current.value,
+        new_email: emailRef.current.value,
+      })
+      .then((res) => {
+        console.log(res);
+
+        if (res.data.msg === "seccess") {
+          sessionStorage.setItem(
+            "user",
+            JSON.stringify({
+              id: userObj.id,
+              user_name: nameRef.current.value,
+              email: emailRef.current.value,
+            })
+          );
+          alert("정보가 변경되었습니다.");
+          window.location.href = "/link";
+        } else {
+          alert("변경 실패...");
+          window.location.href = "/mypage";
+        }
+      });
+  };
+
   return (
     <div className="main-body">
       <h1>마이페이지</h1>
@@ -77,20 +111,30 @@ const MyPage = () => {
             <tr>
               <td>이름</td>
               <td>
-                <Form.Control type="text" size="sm" />
+                <Form.Control
+                  type="text"
+                  size="sm"
+                  defaultValue={userObj.user_name}
+                  ref={nameRef}
+                />
               </td>
             </tr>
             <tr>
               <td>email</td>
               <td>
-                <Form.Control type="text" size="sm" />
+                <Form.Control
+                  type="text"
+                  size="sm"
+                  defaultValue={userObj.email}
+                  ref={emailRef}
+                />
               </td>
             </tr>
           </tbody>
         </Table>
         <Row>
           <Col>
-            <Button variant="info" size="lg">
+            <Button variant="info" size="lg" onClick={handleModify}>
               수정완료
             </Button>
           </Col>

@@ -25,6 +25,13 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/", indexRouter);
 app.use("/user", userRouter);
 
+// app.get('*') 는 Express 라우팅에서 사용되는 패턴 중, '와일드 카드' 로
+// 모든 URL 경로에 대한 처리를 진행
+// 단, 모든 라우팅 중, 가장 하단에 존재
+app.get("*", (req, res) => {
+  console.log("main router");
+  res.sendFile(path.join(__dirname, "react-project", "build", "index.html"));
+});
 // Q. 3000번을 안쓰는 이유는? A. 나중에 React에서 쓸거임
 app.set("port", process.env.PORT || 3001);
 
