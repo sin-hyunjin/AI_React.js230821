@@ -1,8 +1,10 @@
 import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
+import MovieCard from "./MovieCard";
 
-const MovieSlide = () => {
+const MovieSlide = ({ movies }) => {
+  console.log("movieSlise.jsx :", movies);
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -28,10 +30,9 @@ const MovieSlide = () => {
         <h3>Popular Movie</h3>
       </Carousel>
       <Carousel responsive={responsive}>
-        <div>Item 1</div>
-        <div>Item 2</div>
-        <div>Item 3</div>
-        <div>Item 4</div>
+        {movies.map((item) => (
+          <MovieCard movies={item}></MovieCard>
+        ))}
       </Carousel>{" "}
       <Carousel responsive={responsive}>
         <h3>Top rated Movie</h3>

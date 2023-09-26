@@ -1,10 +1,13 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import axios from "../api";
 import Banner from "../components/Banner";
 import MovieSlide from "../components/MovieSlide";
 import { MovieReducerActions } from "../redux/reducers/movieSlice";
+import ClipLoader from "react-spinners/ClipLoader";
+
 const Home = () => {
+  const [loading, setLoading] = useState(true);
   const popularMovies = useSelector((state) => state.movie.popularMovies);
   const upcomingMovies = useSelector((state) => state.movie.upcomingMovies);
   const topRatedMovies = useSelector((state) => state.movie.topRatedMovies);
@@ -32,6 +35,8 @@ const Home = () => {
   // 3가지 종류의 영화목록을 묶어서 요청하기
   // Promise.all() : 모든 요청에 대한 응답이 올 떄까지 대기
   const getMovieList = async () => {
+    setLoading(true);
+
     const upcomingList = axios.get("/movie/upcoming?language=ko-KR&page=1");
     const topRatedList = axios.get("/movie/top_rated?language=ko-KR&page=1");
     const popularList = axios.get("/movie/popular?language=ko-KR&page=1");
@@ -41,7 +46,7 @@ const Home = () => {
       topRatedList,
       popularList,
     ]);
-
+    setLoading(false);
     // console.log("popular data :", popular.data);
     // console.log("topRated data :", topRated.data);
     // console.log("upcoming data :", upcoming.data);
@@ -62,11 +67,25 @@ const Home = () => {
   }, []);
   // /movie/upcoming
 
+  // true: 데이터를 가져오기 전
+  // false : 데이터를 가져온후
   return (
     <div>
-      {popularMovies && <Banner movie={popularMovies[0]}></Banner>}
-
-      <MovieSlide></MovieSlide>
+      {loading ? (
+        <ClipLoader
+          color="#ffffff"
+          loading={loading}
+          size={150}
+          aria-label="Loading Spinner"
+          data-testid="loader"
+        />
+      ) : (
+        <div>
+          {/* {popularMovies && <Banner movie={popularMovies[0]}></Banner>} */}
+          <Banner movie={popularMovies[0]}></Banner>
+          <MovieSlide movies={popularMovies}></MovieSlide>
+        </div>
+      )}
     </div>
   );
 };

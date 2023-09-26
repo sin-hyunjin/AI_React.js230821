@@ -9,8 +9,8 @@ const Banner = ({ movie }) => {
   return (
     <div style={div_style} className="banner">
       <div className="movie-container">
-        <div className="movie-title">{movie?.title}</div>
-        <div className="movle-overview">{movie?.overview}</div>
+        <div className="movie-title">{movie.title}</div>
+        <div className="movle-overview">{movie.overview}</div>
       </div>
     </div>
   );
