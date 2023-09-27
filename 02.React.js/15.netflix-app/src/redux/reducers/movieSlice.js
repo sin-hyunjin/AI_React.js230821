@@ -8,10 +8,11 @@ export const movieSlice = createSlice({
     popularMovies: [],
     topRatedMovies: [],
     upcomingMovies: [],
+    genreList: [],
   },
   reducers: {
     initData: (state, action) => {
-      console.log("movieSlice action", action);
+      // console.log("movieSlice action", action);
       // action -> {type:'', payload: {num:2}}
       // state.count += action.payload.num;
       let { type, payload } = action;
@@ -19,6 +20,9 @@ export const movieSlice = createSlice({
       state.popularMovies = payload.popular.results;
       state.topRatedMovies = payload.topRated.results;
       state.upcomingMovies = payload.upcoming.results;
+      state.genreMovies = payload.genre.genres;
+
+      // state.genreList = payload.genreList.results;
     },
   },
 });
