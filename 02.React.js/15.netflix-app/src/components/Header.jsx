@@ -1,59 +1,54 @@
-import React from "react";
-import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
-import Form from "react-bootstrap/Form";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import React, { useRef } from 'react'
+import Button from 'react-bootstrap/Button'
+import Container from 'react-bootstrap/Container'
+import Form from 'react-bootstrap/Form'
+import Nav from 'react-bootstrap/Nav'
+import Navbar from 'react-bootstrap/Navbar'
+import { Link, useNavigate } from 'react-router-dom'
 
-import { Link } from "react-router-dom";
 const Header = () => {
-  return (
-    <div>
-      <Navbar
-        expand="lg"
-        className="bg-dark
-"
-      >
-        <Container fluid>
-          <Navbar.Brand href="#" className="text-danger">
-            <img
-              src="https://cdn.cookielaw.org/logos/dd6b162f-1a32-456a-9cfe-897231c7763c/4345ea78-053c-46d2-b11e-09adaef973dc/Netflix_Logo_PMS.png"
-              width={"100px"}
-              alt="NETFLIX"
-            />
-          </Navbar.Brand>
-          <Navbar.Toggle
-            aria-controls="navbarScroll"
-            className="p-1 bg-secondary-subtle text-emphasis-secondary"
+  const navigate = useNavigate()
+  const inputRef = useRef('')
+  const searchMovies =(e)=>{
+    e.preventDefault()
+    navigate('/movies',{ state: inputRef.current.value})
+    inputRef.current.value = ''
+  } 
+   return (
+    <Navbar expand="lg" bg="dark" variant="dark" className='header'>
+      <Container fluid>
+        <Navbar.Brand href="/">
+          <img
+            src="https://www.edigitalagency.com.au/wp-content/uploads/netflix-logo-png-large.png"
+            alt=""
+            style={{ width: '100px' }}
           />
-          <Navbar.Collapse id="navbarScroll">
-            <Nav
-              className="me-auto my-2 my-lg-0"
-              style={{ maxHeight: "100px" }}
-              navbarScroll
-            >
-              <Link to={"/"} className="nav-item">
-                Home
-              </Link>
-              <Link to={"/Movies"} className="nav-item">
-                Movies
-              </Link>
-            </Nav>
+        </Navbar.Brand>
+        <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}
+            navbarScroll>
+          <div className="header-nav">
+            <Link to="/" className="nav-item">
+              Home
+            </Link>
+            <Link to="/movies" state={'포켓몬스터'} className="nav-item">
+              Movies
+            </Link>
+          </div>
+        </Nav>
+        <Form className="d-flex">
+          <Form.Control
+            type="search"
+            placeholder="검색할 영화명..."
+            className="me-2"
+            aria-label="Search"
+            ref={inputRef}
+            
+          />
+          <Button type='submit' variant="outline-danger" onClick={searchMovies}>Search</Button>
+        </Form>
+      </Container>
+    </Navbar>
+  )
+}
 
-            <Form className="d-flex">
-              <Form.Control
-                type="search"
-                placeholder="검색할 영화명..."
-                className="me-2"
-                aria-label="Search"
-              />
-              <Button variant="outline-danger">Search</Button>
-            </Form>
-          </Navbar.Collapse>
-        </Container>
-      </Navbar>
-    </div>
-  );
-};
-
-export default Header;
+export default Header

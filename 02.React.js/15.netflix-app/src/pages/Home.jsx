@@ -1,107 +1,79 @@
-import { React, useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import axios from "../api";
-import Banner from "../components/Banner";
-import MovieSlide from "../components/MovieSlide";
-import { MovieReducerActions } from "../redux/reducers/movieSlice";
-import ClipLoader from "react-spinners/ClipLoader";
+import React, { useEffect, useState } from 'react'
+import axios from '../api'
+import { useSelector, useDispatch } from 'react-redux'
+import { movieReducerActions } from '../redux/reducers/movieSlice'
+import Banner from '../components/Banner'
+import MovieSlide from '../components/MovieSlide'
+// 개인 실습 컴포넌트
+// import Banner2 from '../components/Banner2' 
+import CircleLoader from 'react-spinners/CircleLoader'
 
 const Home = () => {
-  const [loading, setLoading] = useState(true);
-  const popularMovies = useSelector((state) => state.movie.popularMovies);
-  const upcomingMovies = useSelector((state) => state.movie.upcomingMovies);
-  const topRatedMovies = useSelector((state) => state.movie.topRatedMovies);
-  const genresMovies = useSelector((state) => state.movie.genreMovies);
-  const dispatch = useDispatch();
-  // console.log("popularMovies :", popularMovies);
-  // console.log("upcomingMovies :", upcomingMovies);
-  // console.log("topRatedMovies :", topRatedMovies);
-  console.log(genresMovies);
-  /**영화 api 데이터  axios.get 방식으로 가져오고 변수명에 저장
-   * 
-  const upcomingReq = async () => {
-    let res = await axios.get("/movie/upcoming?language=en-US&page=1");
-    console.log("upcomingReq data : ", res);
-  };
-  const topRatedReq = async () => {
-    let res = await axios.get("/movie/top_rated?language=en-US&page=1");
-    console.log("topRatedReq data : ", res);
-  };
-  const popularReq = async () => {
-    let res = await axios.get(
-      "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1"
-    );
-    console.log("popular data : ", res);
-  };
-*/
-  // 3가지 종류의 영화목록을 묶어서 요청하기
-  // Promise.all() : 모든 요청에 대한 응답이 올 떄까지 대기
-  const getMovieList = async () => {
-    setLoading(true);
+  // react-spinners용 state
+  const [isLoading, setIsLoading] = useState(false)
+  // redux 가져오기
+  const dispatch = useDispatch()
+  const popularMovies = useSelector((state) => state.movie.popularMovies)
+  const topRatedMovies = useSelector((state) => state.movie.topRatedMovies)
+  const upcomingMovies = useSelector((state) => state.movie.upcomingMovies)
 
-    const upcomingList = axios.get("/movie/upcoming?language=ko-KR&page=1");
-    const topRatedList = axios.get("/movie/top_rated?language=ko-KR&page=1");
-    const popularList = axios.get("/movie/popular?language=ko-KR&page=1");
-    const genreList = axios.get(
-      "https://api.themoviedb.org/3/genre/movie/list?language=ko"
-    );
-
-    const [popular, topRated, upcoming, genre] = await Promise.all([
-      upcomingList,
-      topRatedList,
-      popularList,
-      genreList,
-    ]);
-    setLoading(false);
-    // console.log("popular data :", popular.data);
-
-    // console.log("topRated data :", topRated.data);
-    // console.log("upcoming data :", upcoming.data);
-    console.log(genre.data);
-    dispatch(
-      MovieReducerActions.initData({
-        popular: popular.data,
-        topRated: topRated.data,
-        upcoming: upcoming.data,
-        genre: genre.data,
-      })
-    );
-  };
-
+  // 랜덤 배너용 랜덤 숫자
+  const num = parseInt(Math.random()*20)
+  // 페이지 마운트 시, 데이터 불러오기
   useEffect(() => {
-    getMovieList();
-    // upcomingReq();
-    // topRatedReq();
-    // popularReq();
-  }, []);
-  // /movie/upcoming
-
-  // true: 데이터를 가져오기 전
-  // false : 데이터를 가져온후
+    const getMovieList = async () => {
+      setIsLoading(true)
+      const popularList = axios.get('/movie/popular?language=ko-KR&page=1')
+      const topRatedList = axios.get('/movie/top_rated?language=ko-KR&page=1')
+      const upcomingList = axios.get('/movie/upcoming?language=ko-KR&page=1')
+      const genreList = axios.get('/genre/movie/list?language=ko')
+      const [popular, topRated, upcoming, genres] = await Promise.all([
+        popularList,
+        topRatedList,
+        upcomingList,
+        genreList
+      ])
+      dispatch(
+        movieReducerActions.initData({
+          popular: popular.data.results,
+          topRated: topRated.data.results,
+          upcoming: upcoming.data.results,
+          genres : genres.data.genres
+        })
+      )
+      setIsLoading(false)
+    }
+    getMovieList()
+  }, [dispatch])
   return (
-    <div>
-      {loading ? (
-        <ClipLoader
-          color="#ffffff"
-          loading={loading}
-          size={150}
-          aria-label="Loading Spinner"
-          data-testid="loader"
-        />
+    <div className="home">
+      {isLoading ? (
+        <CircleLoader loading={isLoading} color="white" size={150} />
       ) : (
-        <div>
-          {/* {popularMovies && <Banner movie={popularMovies[0]}></Banner>} */}
-          <Banner movie={popularMovies[0]}></Banner>
-          <MovieSlide
-            movies={popularMovies}
-            upcomingMovies={upcomingMovies}
-            topRatedMovies={topRatedMovies}
-            genresMovies={genresMovies}
-          ></MovieSlide>
-        </div>
+        <Banner movie={popularMovies[num]} />
       )}
-    </div>
-  );
-};
+      <MovieSlide name="인기 영화" movies={popularMovies} />
+      <MovieSlide name="TOP 20" movies={topRatedMovies}/>
+      <MovieSlide name="개봉 예정작" movies={upcomingMovies}/>
 
-export default Home;
+      {/* 개인 */}
+      {/* {isLoading ? (
+        <CircleLoader loading={isLoading} color="white" size={150} className='loader'/>
+      ) : (
+        <Banner2 name="인기 영화" movies={popularMovies} />
+      )}
+      {isLoading ? (
+        <CircleLoader loading={isLoading} color="white" size={150} />
+      ) : (
+        <Banner2 name="TOP 20" movies={topRatedMovies} />
+      )}
+      {isLoading ? (
+        <CircleLoader loading={isLoading} color="white" size={150} />
+      ) : (
+        <Banner2 name="개봉 예정" movies={upcomingMovies} />
+      )} */}
+    </div>
+  )
+}
+
+export default Home

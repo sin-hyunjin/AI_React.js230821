@@ -3,20 +3,23 @@ import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import Badge from 'react-bootstrap/Badge'
 
-const MovieCard = ({ movie }) => {
+const SearchMovieCard = ({ movie }) => {
   const navigate = useNavigate()
   const genres = useSelector((state) => state.movie.genreList)
-  const divStyle = {
-    backgroundImage: `url(https://www.themoviedb.org/t/p/original${movie?.poster_path})`,
-  }
-  const moveMovieDetail = () => {
+
+  const moveMovieDetail = ()=>{
     navigate(`/movies/${movie.id}`)
   }
   return (
-    <div style={divStyle} className="moviecard">
-      <div className="moviecard-info" onClick={moveMovieDetail}>
-        <h3>{movie.title}</h3>
-        <span></span>
+    <div className="search-moviecard">
+      <div className="search-moviecard-img">
+        <img
+          src={`https://www.themoviedb.org/t/p/original${movie?.poster_path}`}
+          alt="이미지 없음"
+          onClick={moveMovieDetail}
+        />
+      </div>
+      <div className="search-moviecard-info">
         <div className="genre">
           {movie.genre_ids.map((item, index) => (
             <Badge bg="danger" key={index}>
@@ -24,6 +27,8 @@ const MovieCard = ({ movie }) => {
             </Badge>
           ))}
         </div>
+        <h1 onClick={moveMovieDetail}>{movie.title}</h1>
+        <p>{movie.overview}</p>
         <span>
           ⭐{movie.vote_average} |{' '}
           {movie.adult === true ? '청소년 이용 불가' : '청소년 이용 가능'}
@@ -33,4 +38,4 @@ const MovieCard = ({ movie }) => {
   )
 }
 
-export default MovieCard
+export default SearchMovieCard

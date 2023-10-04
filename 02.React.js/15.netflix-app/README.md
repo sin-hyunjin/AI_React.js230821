@@ -1,10 +1,3 @@
-# 필요한 라이브러리
-
-1. npm install react-bootstrap bootstrap
-2. npm install react-router-dom
-3. npm install @reduxjs/toolkit react-redux
-4. npm install axios
-
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

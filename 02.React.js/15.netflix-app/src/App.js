@@ -1,27 +1,23 @@
-import "./App.css";
-import "bootstrap/dist/css/bootstrap.min.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Home from "./pages/Home";
-import Movies from "./pages/Movies";
-import MovieDetail from "./pages/MovieDetail";
-import NotFound from "./pages/NotFound";
-import Header from "./components/Header";
+import React from 'react'
+import './App.css'
+import { Routes, Route } from 'react-router-dom'
+import 'bootstrap/dist/css/bootstrap.min.css'
+import Home from './pages/Home'
+import Movies from './pages/Movies'
+import MovieDetail from './pages/MovieDetail'
+import Header from './components/Header'
 
 function App() {
   return (
-    <div>
-      <BrowserRouter>
-        <Header></Header>
-        <Routes>
-          <Route path="/" element={<Home />}></Route>
-          <Route path="/movies" element={<Movies />}></Route>
-          <Route path="/movies/:id" element={<MovieDetail />}></Route>
-          {/* 상단에 위치하는 라우트들의 규칠을 모두 확인하고, 일치하는 라우터가 없는경우 처리  */}
-          <Route path="*" element={<NotFound />}></Route>
-        </Routes>
-      </BrowserRouter>
-    </div>
-  );
+    <>
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:id" element={<MovieDetail />} />
+      </Routes>
+    </>
+  )
 }
 
-export default App;
+export default App

@@ -1,7 +1,30 @@
-import React from "react";
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import axios from '../api'
+import { useDispatch, useSelector } from 'react-redux'
+import { movieReducerActions } from '../redux/reducers/movieSlice'
+import SearchMovieCard from '../components/SearchMovieCard'
 
 const Movies = () => {
-  return <div>Movies</div>;
-};
+  const { state } = useLocation()
+  const dispatch = useDispatch()
+  const searchMovies = useSelector(state=>state.movie.searchList)
 
-export default Movies;
+  useEffect(() => {
+    const getSearchData = async () => {
+      const res = await axios.get(`/search/movie?query=${state}&language=ko-KR&page=1`)
+      dispatch(movieReducerActions.searchData(res.data.results))
+    }
+    getSearchData()
+  }, [state, dispatch])
+  return (
+    <div className='movies'>
+      <p>'{state}' 검색 결과</p>
+      {searchMovies.map((item)=>(
+        <SearchMovieCard key={item.id} movie={item}/>
+      ))}
+    </div>
+  )
+}
+
+export default Movies
