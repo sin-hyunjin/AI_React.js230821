@@ -33,7 +33,7 @@ const MovieDetail = () => {
     setReviews(res.data.results)
   }
   return (
-    <div>
+    <div className="name">
       {isLoading ? (
         <CircleLoader loading={isLoading} color="white" size={150} />
       ) : (
@@ -74,7 +74,8 @@ const MovieDetail = () => {
         </div>
       )}
       {/* 리뷰영역  */}
-      <div className="container review-box">
+
+      <div className="review-box">
         {reviews.map((item) => (
           <div className="review-item">
             <h4>{item.author}</h4>

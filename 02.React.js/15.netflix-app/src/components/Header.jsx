@@ -5,17 +5,18 @@ import Form from 'react-bootstrap/Form'
 import Nav from 'react-bootstrap/Nav'
 import Navbar from 'react-bootstrap/Navbar'
 import { Link, useNavigate } from 'react-router-dom'
+import produce from 'immer'
 
 const Header = () => {
   const navigate = useNavigate()
   const inputRef = useRef('')
-  const searchMovies =(e)=>{
+  const searchMovies = (e) => {
     e.preventDefault()
-    navigate('/movies',{ state: inputRef.current.value})
+    navigate('/movies', { state: inputRef.current.value })
     inputRef.current.value = ''
-  } 
-   return (
-    <Navbar expand="lg" bg="dark" variant="dark" className='header'>
+  }
+  return (
+    <Navbar expand="lg" bg="dark" variant="dark" className="header">
       <Container fluid>
         <Navbar.Brand href="/">
           <img
@@ -24,14 +25,20 @@ const Header = () => {
             style={{ width: '100px' }}
           />
         </Navbar.Brand>
-        <Nav className="me-auto my-2 my-lg-0" style={{ maxHeight: '100px' }}
-            navbarScroll>
+        <Nav
+          className="me-auto my-2 my-lg-0"
+          style={{ maxHeight: '100px' }}
+          navbarScroll
+        >
           <div className="header-nav">
             <Link to="/" className="nav-item">
               Home
             </Link>
             <Link to="/movies" state={'포켓몬스터'} className="nav-item">
               Movies
+            </Link>
+            <Link to="/sort" className="nav-item">
+              Sort
             </Link>
           </div>
         </Nav>
@@ -42,9 +49,10 @@ const Header = () => {
             className="me-2"
             aria-label="Search"
             ref={inputRef}
-            
           />
-          <Button type='submit' variant="outline-danger" onClick={searchMovies}>Search</Button>
+          <Button type="submit" variant="outline-danger" onClick={searchMovies}>
+            Search
+          </Button>
         </Form>
       </Container>
     </Navbar>

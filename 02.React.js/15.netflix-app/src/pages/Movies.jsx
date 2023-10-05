@@ -8,20 +8,22 @@ import SearchMovieCard from '../components/SearchMovieCard'
 const Movies = () => {
   const { state } = useLocation()
   const dispatch = useDispatch()
-  const searchMovies = useSelector(state=>state.movie.searchList)
+  const searchMovies = useSelector((state) => state.movie.searchList)
 
   useEffect(() => {
     const getSearchData = async () => {
-      const res = await axios.get(`/search/movie?query=${state}&language=ko-KR&page=1`)
+      const res = await axios.get(
+        `/search/movie?query=${state}&language=ko-KR&page=1`
+      )
       dispatch(movieReducerActions.searchData(res.data.results))
     }
     getSearchData()
   }, [state, dispatch])
   return (
-    <div className='movies'>
+    <div className="movies">
       <p>'{state}' 검색 결과</p>
-      {searchMovies.map((item)=>(
-        <SearchMovieCard key={item.id} movie={item}/>
+      {searchMovies.map((item) => (
+        <SearchMovieCard key={item.id} movie={item} />
       ))}
     </div>
   )

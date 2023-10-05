@@ -165,11 +165,24 @@ body {
 
 /* Review */
 .review-box {
-  display: flex;
-  flex-direction: column;
-  border: 3px solid white;
+  border: 1px solid white;
   padding: 30px;
+
+  width: 80%;
 }
 .review-item {
   border-bottom: 1px solid whitesmoke;
+}
+.name {
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+}
+
+/* Sort */
+
+.sort-card-list {
+  display: flex;
+  flex-wrap: wrap;
 }

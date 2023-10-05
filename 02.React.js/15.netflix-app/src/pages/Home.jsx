@@ -5,8 +5,9 @@ import { movieReducerActions } from '../redux/reducers/movieSlice'
 import Banner from '../components/Banner'
 import MovieSlide from '../components/MovieSlide'
 // 개인 실습 컴포넌트
-// import Banner2 from '../components/Banner2' 
+// import Banner2 from '../components/Banner2'
 import CircleLoader from 'react-spinners/CircleLoader'
+import MovieCard from '../components/MovieCard'
 
 const Home = () => {
   // react-spinners용 state
@@ -18,7 +19,7 @@ const Home = () => {
   const upcomingMovies = useSelector((state) => state.movie.upcomingMovies)
 
   // 랜덤 배너용 랜덤 숫자
-  const num = parseInt(Math.random()*20)
+  const num = parseInt(Math.random() * 20)
   // 페이지 마운트 시, 데이터 불러오기
   useEffect(() => {
     const getMovieList = async () => {
@@ -31,14 +32,14 @@ const Home = () => {
         popularList,
         topRatedList,
         upcomingList,
-        genreList
+        genreList,
       ])
       dispatch(
         movieReducerActions.initData({
           popular: popular.data.results,
           topRated: topRated.data.results,
           upcoming: upcoming.data.results,
-          genres : genres.data.genres
+          genres: genres.data.genres,
         })
       )
       setIsLoading(false)
@@ -53,9 +54,8 @@ const Home = () => {
         <Banner movie={popularMovies[num]} />
       )}
       <MovieSlide name="인기 영화" movies={popularMovies} />
-      <MovieSlide name="TOP 20" movies={topRatedMovies}/>
-      <MovieSlide name="개봉 예정작" movies={upcomingMovies}/>
-
+      <MovieSlide name="TOP 20" movies={topRatedMovies} />
+      <MovieSlide name="개봉 예정작" movies={upcomingMovies} />
       {/* 개인 */}
       {/* {isLoading ? (
         <CircleLoader loading={isLoading} color="white" size={150} className='loader'/>
