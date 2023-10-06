@@ -287,10 +287,13 @@ JSX문법의 특징
    - 프리티어(무료) 사용하지만 일정 사용량 이후로는 사용한만큼 결제되니 사용하지 않을 때는 꼭 ‘인스턴스 중지’ 해놓기
    - 탈퇴 한 아이디로는 재가입 불가능!
 2. EC2 인스턴스 생성하기
+
    - Amazon Elastic Compute Cloud(Amazon EC2)
+
      - EC2는 AWS에서 제공하는 클라우드 컴퓨팅 서비스
-     ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/a2255069-bbc1-4ff4-9831-4a06e712de08/Untitled.png)
+       ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/a2255069-bbc1-4ff4-9831-4a06e712de08/Untitled.png)
      - 인스턴스 생성
+
        1. 인스턴스 시작
        2. 이름 및 태그 : 인스턴스를 구분할 이름 정보 작성
        3. AMI 선택
@@ -305,6 +308,7 @@ JSX문법의 특징
 
        5. 네트워크 설정
        6. 인스턴스 시작
+
 3. 인스턴스 연결
 
    - SSH 클라이언트로 연결
