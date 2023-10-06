@@ -263,3 +263,168 @@ JSX문법의 특징
 - 블록이라 생각하고 페이지를 한개씩 생각하고 쪼개는 작업
 
 - 코드의 재사용성과 유지 보수성을 향상시킨다.
+
+# AWS 배포하기
+
+#### AWS 사이트
+
+- https://eu-north-1.console.aws.amazon.com/console/home?region=eu-north-1
+
+1. 검색창에 Ec2검색 (클라우드의 가상 서버)
+
+2. 인스턴스 시작 클릭 (정보입력 )
+
+- 이름 및태그
+- 애플리케이션 및 OS 이미지(Amazon Machine Image)
+- 키 페어(로그인)
+- 네트워크 설정
+- 인스턴스 시작 -> 모든 인스턴스 보기
+
+# AWS EC2 인스턴스 생성하기
+
+1. AWS 회원가입
+   - 회원가입 시 결제 할 카드 필요
+   - 프리티어(무료) 사용하지만 일정 사용량 이후로는 사용한만큼 결제되니 사용하지 않을 때는 꼭 ‘인스턴스 중지’ 해놓기
+   - 탈퇴 한 아이디로는 재가입 불가능!
+2. EC2 인스턴스 생성하기
+   - Amazon Elastic Compute Cloud(Amazon EC2)
+     - EC2는 AWS에서 제공하는 클라우드 컴퓨팅 서비스
+     ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/a2255069-bbc1-4ff4-9831-4a06e712de08/Untitled.png)
+     - 인스턴스 생성
+       1. 인스턴스 시작
+       2. 이름 및 태그 : 인스턴스를 구분할 이름 정보 작성
+       3. AMI 선택
+          - AMI는 인스턴스를 시작하는 데 필요한 소프트웨어 구성(운영 체제, 애플리케이션 서버 및 애플리케이션)이 포함된 템플릿
+       4. 키 페어
+
+          - 키는 사용자계정(SMHRD) 밑에 Key 폴더 생성 후 해당 위치에 저장
+
+          ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/ac8b3546-ce09-4947-b4e2-8e1b82370653/Untitled.png)
+
+          ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/8322cf72-a748-4a46-b967-2f3606ae310d/Untitled.png)
+
+       5. 네트워크 설정
+       6. 인스턴스 시작
+3. 인스턴스 연결
+
+   - SSH 클라이언트로 연결
+   - PowerShell로 키(.pem)가 있는 경로로 이동
+
+   ```powershell
+   - SSH 클라이언트로 연결
+
+       ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fbfaea74-8d40-40bc-9c61-8c34d3c9185c/bd69981d-4b45-453e-93a9-17de81695428/Untitled.png)
+
+       ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fbfaea74-8d40-40bc-9c61-8c34d3c9185c/3da92f88-9479-4619-9461-eb49ef8a1d62/Untitled.png)
+
+   - PowerShell로 키(.pem)가 있는 경로로 이동
+   ```
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/386fda74-8541-4284-9f64-bd0c0f37fd5a/Untitled.png)
+
+4. 인스턴스 환경설정
+
+   - 인바운드 규칙 추가
+     - 포트번호 : IP를 통해 접속한 컴퓨터에서 어떤 곳으로 연결할지 구분시키는 역할
+       - port는 0번부터 65535 사용
+       - Well-known port(0~1023) : 자주 사용되는 포트번호(http:80, ssh:22)
+       - Registered port(1024~49151) : 특정 용도로 사용되는 포트번호(mysql:3306, oracle:1524)
+       - Dynamic port(49152~65535) : 자유롭게 사용가능한 포트번호
+     - 인바운드 : 외부 컴퓨터에서 AWS 내부 컴퓨터로 데이터가 들어올 수 있도록 규칙 정의
+     - 아웃바운드 : AWS 내부 컴퓨터에서 데이터가 나갈 수 있도록 규칙 정의
+   - Nodejs 서버 Port 3000번 추가
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/c054e67f-a510-4db3-aca1-cdc729710693/Untitled.png)
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/7b047066-bf17-46c4-aaeb-2ed8154879c3/Untitled.png)
+
+5. 패키지 설치
+   - apt-get update/upgrade
+     ```powershell
+     sudo apt-get update
+     sudo apt-get upgrade
+     ```
+     - APT : Advanced Packaged Tool, 데비안의 패키징 시스팀을 관리하는 도구 모음
+     - apt, apt-get 등등 : APT와 상호작용하여 패키지를 설치/업데이트/삭제 등의 기능 수행하는 명령어
+     - apt, apt-get 차이점
+       - 큰 내부동작 차이 X
+       - apt는 진행바 등 출력 페이지가 좀 더 친절
+       - apt-get는 더 많은 기능 제공하며, 오래전부터 사용해서 안정적/호환성↑
+   - 필요한 기타 패키지 설치
+     ```powershell
+     sudo apt-get install nodejs npm
+     sudo apt-get install git
+     ```
+
+# AWS RDS 생성 및 Node.js 연동
+
+1. RDS 생성하기
+
+   - Amazon Relational Database Service(RDS)
+     - RDS는 AWS에서 제공하는 관계형 데이터베이스 서비스
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/2dc68e5d-7b2b-40c6-9dcf-6b3449ed5302/Untitled.png)
+
+- 데이터베이스 생성 클릭
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/eb68e570-85f8-4175-932e-a43a594f7dac/Untitled.png)
+
+- 표준 생성 → MySQL 체크
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/def24ee1-c7ee-493f-a1fe-45db6132d108/Untitled.png)
+
+- 템플릿 프리티어 체크
+  - DB 인스턴스 클래스는 db.t2.micro로 설정
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/2c76373f-dbe3-4e46-8294-e223b268032b/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/c5fa759d-965b-4cd0-96f4-3b0e2a16fd74/Untitled.png)
+
+- 식별자 및 계정 설정
+  - 마스터 사용자 이름과 암호는 향후 접속할 때 필요한 정보이니 꼭 기억해둘 것!
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/2506361a-5a0d-4ebc-8ad9-990dafef7442/Untitled.png)
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/1d72cf8e-2f22-4e7c-8250-1151abe61106/Untitled.png)
+
+- 자동백업 해제 ( 해제하지 않으면 요금 폭탄될 수 있음 )
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/b3433f5a-6f53-4a7c-b468-e0a9cd3519e7/Untitled.png)
+
+- 외부접근이 되도록 퍼블릭 액세스 체크
+  - ‘예’로 체크해야 외부에서도 접속 가능
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/93ac3f8c-6277-49b3-87ff-c70869c66938/Untitled.png)
+
+- 자동백업 해제
+  - 초기 데이터베이스 이름 작성 필요
+  - 미 작성 시, create database 명령어로 직접 생성해줘야 하는 번거로움 발생
+
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/bb34f6f8-dd24-463a-a597-2fc82e2ea779/Untitled.png)
+
+1. 보안 그룹 설정
+
+   - 생성된 데이터베이스 클릭 ( 생성되기까지 시간이 다소 걸릴 수 있음 )
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/b663a6a5-48cd-46b8-bd5d-00743029c0cc/Untitled.png)
+
+   - 접속한 페이지 아래로 내려간 후, 보안그룹 클릭
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/7b9b488e-e746-4e71-978f-afdb1dbc15eb/Untitled.png)
+
+   - 인바운드 규칙 추가(외부접속 포트 및 IP 설정)
+     - IP를 0.0.0.0/0으로 설정해야 어디서든 접속 가능
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/5e495d0a-2697-4123-b37b-a05033924b31/Untitled.png)
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/e02587bb-5f8b-4451-91e6-5b87a286e7f4/Untitled.png)
+
+2. Node.js에 AWS RDS 정보 입력 후 테스트
+
+   - 생성된 데이터베이스의 접속 엔드포인트주소를 복사
+   - 생성 전 설정한 username/password 입력
+   - mysql workbench 에 정보 입력 후 접속 및 테이블 생성 테스트
+
+   ![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/fc678259-6c41-4351-abdf-dd940085bbef/0e09fa30-7eb4-400f-803e-aad0d848fe5e/Untitled.png)
+
+   - node.js에는 데이터베이스 연결정보를 입력하는 파일에 상세내용 작성

@@ -90,7 +90,7 @@ const Sort = () => {
                         href="#/action-5"
                         onClick={() => movieSorted('인기도', 'asc')}
                       >
-                        인기도 오름차순
+                        인기도 오름차순 가보자구!
                       </Dropdown.Item>
                       <Dropdown.Item
                         href="#/action-6"
